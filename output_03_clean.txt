@@ -1,0 +1,86 @@
+ LOADING FEATURE-ENGINEERED DATA
+  Loaded: 5,000 rows x 62 columns
+
+ PREPARING FEATURES
+  Target  : profit
+  Features: 29 columns
+  List    : ['qty', 'amount', 'day_of_week', 'day_of_month', 'month', 'quarter', 'year', 'is_weekend', 'has_promotion', 'fulfilled_by_amazon', 'b2b_flag', 'status_enc'] ...
+  Usable rows: 5,000
+  Train: 4,000 | Test: 1,000
+
+ TRAINING LINEAR REGRESSION VARIANTS
+
+  Model: LinearRegression
+     MAE    : Rs. 31.42
+     RMSE   : Rs. 61.25
+     R2     : 0.9670
+     MAPE   : 10.90%
+
+  Model: Ridge(alpha=1.0)
+     MAE    : Rs. 31.13
+     RMSE   : Rs. 61.07
+     R2     : 0.9672
+     MAPE   : 10.64%
+
+  Model: Ridge(alpha=10.0)
+     MAE    : Rs. 29.06
+     RMSE   : Rs. 59.86
+     R2     : 0.9685
+     MAPE   : 9.00%
+
+  Model: Lasso(alpha=0.1)
+     MAE    : Rs. 30.77
+     RMSE   : Rs. 61.07
+     R2     : 0.9672
+     MAPE   : 10.29%
+
+  Model: ElasticNet
+     MAE    : Rs. 38.87
+     RMSE   : Rs. 70.76
+     R2     : 0.9560
+     MAPE   : 19.62%
+
+  Best model: Ridge(alpha=10.0)  (R2=0.9685)
+  Saved to  : models/linear_regression_best.pkl
+
+ 5-FOLD CROSS VALIDATION (Best LR Model)
+  CV R2  : 0.9656 +/- 0.0063
+  CV MAE : Rs. 29.37 +/- Rs. 0.29
+
+ RESIDUAL ANALYSIS
+  Saved plot: outputs/linear_regression/residual_analysis.png
+
+ FEATURE COEFFICIENTS (Best LR)
+            Feature  Coefficient
+             amount   610.003267
+     amount_per_qty  -425.673959
+                qty  -207.370460
+        qty_squared   132.292104
+      is_bulk_order    57.574454
+      is_high_value     8.912824
+        day_of_week     8.839779
+      weekend_promo     6.534552
+         is_weekend    -6.488890
+ state_revenue_mean     5.721814
+           b2b_flag    -5.603788
+              month     3.370010
+      has_promotion    -2.760216
+  state_revenue_sum    -2.178781
+  sales_channel_enc    -2.042091
+   price_bucket_enc    -1.970380
+     fulfilment_enc    -1.753596
+fulfilled_by_amazon     1.753596
+       day_of_month    -1.370600
+         log_amount     1.370044
+  Saved plot: outputs/linear_regression/feature_coefficients.png
+  Saved plot: outputs/linear_regression/model_comparison.png
+
+  Results saved to: outputs/linear_regression_results.csv
+
+ LINEAR REGRESSION COMPLETE
+            model       MAE      RMSE       R2     MAPE%
+Ridge(alpha=10.0) 29.064668 59.863631 0.968485  9.004544
+ Ridge(alpha=1.0) 31.130510 61.066222 0.967206 10.644446
+ Lasso(alpha=0.1) 30.772000 61.068333 0.967204 10.288081
+ LinearRegression 31.423008 61.254246 0.967004 10.901111
+       ElasticNet 38.873253 70.760240 0.955968 19.624278

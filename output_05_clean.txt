@@ -1,0 +1,89 @@
+ LOADING DATA
+  Loaded : data/feature_engineered.csv
+  Shape  : 5,000 rows × 62 columns
+
+  Features : 29
+  Train    : 4,000  |  Test: 1,000
+
+ LOADING / TRAINING MODELS
+  Loaded  : Linear Regression (Best)
+  Loaded  : Random Forest (Tuned)
+  Loaded  : Gradient Boosting
+
+ MODEL EVALUATION RESULTS
+
+  [Linear Regression (Best)]
+    MAE (INR)                : 29.06
+    RMSE (INR)               : 59.86
+    R2                       : 0.9685
+    Explained Variance       : 0.9686
+    MAPE (%)                 : 9.0
+
+  [Random Forest (Tuned)]
+    MAE (INR)                : 13.33
+    RMSE (INR)               : 44.7
+    R2                       : 0.9824
+    Explained Variance       : 0.9825
+    MAPE (%)                 : 3.62
+
+  [Gradient Boosting]
+    MAE (INR)                : 8.41
+    RMSE (INR)               : 35.74
+    R2                       : 0.9888
+    Explained Variance       : 0.9888
+    MAPE (%)                 : 2.46
+
+  Saved comparison CSV → outputs/all_models_comparison.csv
+
+ GENERATING COMPARISON PLOTS
+  Saved plot : outputs/evaluation/all_models_comparison.png
+  Saved plot : outputs/evaluation/actual_vs_predicted_all_models.png
+  Saved plot : outputs/evaluation/residuals_all_models.png
+
+ CROSS-VALIDATION COMPARISON
+  Linear Regression (Best)           : 0.9663 ± 0.0056
+  Random Forest (Tuned)              : 0.9396 ± 0.0121
+  Gradient Boosting                  : 0.9735 ± 0.0100
+  Saved plot : outputs/evaluation/cross_validation_comparison.png
+
+ PERMUTATION IMPORTANCE (Random Forest)
+            Feature  Imp_Mean  Imp_Std
+      is_high_value  0.173932 0.003586
+                qty  0.133912 0.009645
+         log_amount  0.125560 0.005892
+        qty_squared  0.118490 0.009055
+             amount  0.096787 0.004802
+     amount_per_qty  0.050259 0.003615
+      is_bulk_order  0.046564 0.004496
+   price_bucket_enc  0.010851 0.001486
+           size_enc  0.000321 0.000371
+  sales_channel_enc  0.000317 0.000129
+fulfilled_by_amazon  0.000247 0.000146
+         status_enc  0.000197 0.000165
+           b2b_flag  0.000122 0.000045
+  state_revenue_sum  0.000053 0.000202
+     fulfilment_enc  0.000051 0.000073
+         is_weekend  0.000012 0.000062
+               year  0.000000 0.000000
+            quarter  0.000000 0.000000
+      weekend_promo -0.000033 0.000073
+      has_promotion -0.000094 0.000111
+  Saved plot : outputs/evaluation/permutation_importance.png
+
+ PREDICTION INTERVALS
+  Saved plot : outputs/evaluation/prediction_intervals.png
+  Prediction intervals plot saved.
+
+ FINAL EVALUATION REPORT
+                   Model  MAE (INR)  RMSE (INR)     R2  Explained Variance  MAPE (%)
+       Gradient Boosting       8.41       35.74 0.9888              0.9888      2.46
+   Random Forest (Tuned)      13.33       44.70 0.9824              0.9825      3.62
+Linear Regression (Best)      29.06       59.86 0.9685              0.9686      9.00
+
+  HTML report → outputs/evaluation_report.html
+  All plots   → outputs/evaluation/
+
+ MODEL EVALUATION COMPLETE
+  Best model : Gradient Boosting
+  Best R²    : 0.9888
+  Best MAE   : Rs. 8.41

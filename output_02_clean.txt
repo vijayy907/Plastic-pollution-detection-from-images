@@ -1,0 +1,54 @@
+ LOADING PREPROCESSED DATA
+  Loaded : data/preprocessed_amazon_sales.csv
+  Shape  : 5,000 rows × 35 columns
+
+ ADVANCED FEATURE ENGINEERING
+  Created : is_bulk_order, qty_squared
+  Created : log_amount, amount_per_qty
+  Created : log_revenue, log_profit
+  Created : cat_revenue_mean, cat_revenue_median, cat_revenue_std
+  Created : state_revenue_mean, state_revenue_sum
+  One-hot : size → ['size_3XL', 'size_4XL', 'size_5XL', 'size_6XL', 'size_Free', 'size_L', 'size_M', 'size_S', 'size_XL', 'size_XS', 'size_XXL']
+  Created : season + season dummies
+  Created : is_high_value (revenue ≥ 2286, top 10 %)
+  Created : weekend_promo (interaction feature)
+
+  Shape after feature engineering: 5,000 × 62
+
+ CORRELATION ANALYSIS
+
+Top 15 features correlated with 'profit':
+profit              1.000000
+revenue             1.000000
+log_profit          0.801236
+log_revenue         0.800189
+is_high_value       0.745350
+amount              0.707343
+log_amount          0.600705
+qty                 0.545783
+qty_squared         0.534070
+is_bulk_order       0.452663
+amount_per_qty      0.231793
+cat_revenue_mean    0.042469
+cat_revenue_std     0.030065
+day_of_month        0.029460
+price_bucket_enc    0.027915
+  Saved plot : outputs/feature_plots/correlation_heatmap.png
+
+ DISTRIBUTION PLOTS
+  Saved plot : outputs/feature_plots/revenue_profit_distribution.png
+  Saved plot : outputs/feature_plots/monthly_revenue_trend.png
+  Saved plot : outputs/feature_plots/category_revenue.png
+  Saved plot : outputs/feature_plots/season_revenue_boxplot.png
+  Saved plot : outputs/feature_plots/fulfilment_revenue.png
+  Saved plot : outputs/feature_plots/price_bucket_distribution.png
+
+ FEATURE ENGINEERING COMPLETE
+  Output file : data/feature_engineered.csv
+  Rows        : 5,000
+  Columns     : 62
+  Plots saved : outputs/feature_plots/
+  New features : is_bulk_order, qty_squared, log_amount,
+                 amount_per_qty, log_revenue, log_profit,
+                 cat_revenue_*, state_revenue_*, size_*,
+                 season, season_*, is_high_value, weekend_promo

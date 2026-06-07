@@ -1,0 +1,85 @@
+
+ LOADING DATA
+  Loaded  : data/Amazon Sale Report.csv
+  Shape   : 5,000 rows × 16 columns
+
+ DATA OVERVIEW
+
+[Column Names]
+['Order ID', 'Date', 'Status', 'Fulfilment', 'Sales Channel', 'Category', 'Size', 'Qty', 'Amount', 'ship-city', 'ship-state', 'ship-postal-code', 'B2B', 'promotion-ids', 'ASIN', 'Style']
+
+[Data Types]
+Order ID                str
+Date                    str
+Status                  str
+Fulfilment              str
+Sales Channel           str
+Category                str
+Size                    str
+Qty                 float64
+Amount              float64
+ship-city               str
+ship-state              str
+ship-postal-code      int64
+B2B                    bool
+promotion-ids           str
+ASIN                    str
+Style                   str
+
+[First 3 rows]
+              Order ID                 Date                        Status Fulfilment Sales Channel Category Size  Qty  Amount ship-city  ship-state  ship-postal-code    B2B promotion-ids        ASIN    Style
+0  405-7413414-7962611  2022-05-15 18:00:00                     Cancelled     Amazon     Amazon.in      Top  6XL  1.0  437.20   Lucknow       Delhi            153783  False   IN_Summer_2  B0T7A54KSG  JNE1784
+1  405-7423388-8705870  2022-06-16 10:00:00  Shipped - Returned to Seller   Merchant     Amazon.in     Sock   XS  1.0  551.44   Lucknow  Tamil Nadu            963761  False   IN_Summer_2  B02969Z228  JNE6049
+2  405-7550634-2692743  2022-04-29 16:00:00                       Shipped   Merchant     Amazon.in  Dupatta  3XL  1.0  297.69    Jaipur     Gujarat            849404  False  No Promotion  B0CE6KFBMA  JNE8951
+
+[Missing Values]
+Qty              150
+Amount           150
+promotion-ids    492
+dtype: int64
+
+[Duplicated rows]: 0
+
+ DATA CLEANING
+  Columns renamed: ['order_id', 'date', 'status', 'fulfilment', 'sales_channel', 'category', 'size', 'qty', 'amount', 'ship_city', 'ship_state', 'ship_postal_code', 'b2b', 'promotion_ids', 'asin', 'style']
+  Parsed 'date' as datetime
+  Dropped duplicates: 0 rows removed
+  Filled 'qty' (150 NaN) → median = 1.00
+  Filled 'amount' (150 NaN) → median = 483.19
+  Filled 'promotion_ids' (492 NaN) → 'Unknown'
+  Removed 0 rows with amount ≤ 0 or NaN
+  Removed 0 rows with qty ≤ 0 or NaN
+
+  Cleaned data saved → data/cleaned_amazon_sales.csv
+  Shape after cleaning: 5,000 × 16
+
+ FEATURE ENGINEERING
+  Created 'revenue' (amount × qty)
+  Created 'profit' (revenue × 0.30)
+  Created date features: day_of_week, day_of_month, month, quarter, year, is_weekend
+  Created 'price_bucket'
+  Created 'has_promotion' binary flag
+  Created 'fulfilled_by_amazon' binary flag
+  Created 'b2b_flag' binary flag
+
+  Shape after feature engineering: 5,000 × 28
+
+ ENCODING & SAVING
+  Label-encoded 'status' → 'status_enc'
+  Label-encoded 'fulfilment' → 'fulfilment_enc'
+  Label-encoded 'sales_channel' → 'sales_channel_enc'
+  Label-encoded 'category' → 'category_enc'
+  Label-encoded 'size' → 'size_enc'
+  Label-encoded 'ship_state' → 'ship_state_enc'
+  Label-encoded 'price_bucket' → 'price_bucket_enc'
+
+  Preprocessed data saved → data/preprocessed_amazon_sales.csv
+  Final shape: 5,000 rows × 35 columns
+
+ PREPROCESSING COMPLETE
+  Output file : data/preprocessed_amazon_sales.csv
+  Rows        : 5,000
+  Columns     : 35
+  Key features: revenue, profit, date features,
+                price_bucket, has_promotion,
+                fulfilled_by_amazon, b2b_flag

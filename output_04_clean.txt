@@ -1,0 +1,75 @@
+ LOADING FEATURE-ENGINEERED DATA
+  Loaded: 5,000 rows x 62 columns
+
+ PREPARING FEATURES
+  Features: 29  |  Rows: 5,000
+  Train: 4,000 | Test: 1,000
+
+ BASELINE RANDOM FOREST
+
+  Model: Random Forest (Baseline)
+     MAE    : Rs. 6.88
+     RMSE   : Rs. 75.91
+     R2     : 0.9493
+     MAPE   : 0.73%
+
+ HYPERPARAMETER TUNING (GridSearchCV 3-fold)
+Fitting 3 folds for each of 8 candidates, totalling 24 fits
+
+  Best params: {'max_depth': 25, 'max_features': 'sqrt', 'min_samples_leaf': 2, 'n_estimators': 200}
+  Best CV R2 (subsampled) : 0.9389
+
+  Model: Random Forest (Tuned)
+     MAE    : Rs. 13.33
+     RMSE   : Rs. 44.70
+     R2     : 0.9824
+     MAPE   : 3.62%
+
+  Saved to: models/random_forest_tuned.pkl
+
+ GRADIENT BOOSTING REGRESSOR (comparison)
+
+  Model: Gradient Boosting
+     MAE    : Rs. 8.41
+     RMSE   : Rs. 35.74
+     R2     : 0.9888
+     MAPE   : 2.46%
+
+ 3-FOLD CROSS VALIDATION (Tuned RF)
+  CV R2  : 0.9396 +/- 0.0121
+  CV MAE : Rs. 17.46 +/- Rs. 0.49
+
+ FEATURE IMPORTANCE
+           Feature  Importance
+     is_high_value    0.221016
+        log_amount    0.188817
+            amount    0.170326
+               qty    0.100184
+    amount_per_qty    0.092818
+       qty_squared    0.086340
+     is_bulk_order    0.051226
+  price_bucket_enc    0.035107
+          size_enc    0.005952
+cat_revenue_median    0.005840
+   cat_revenue_std    0.005474
+      day_of_month    0.005177
+       day_of_week    0.004450
+    ship_state_enc    0.004310
+  cat_revenue_mean    0.004139
+state_revenue_mean    0.003832
+ state_revenue_sum    0.003199
+      category_enc    0.003031
+        status_enc    0.002374
+             month    0.001904
+  Saved plot: outputs/random_forest/feature_importance.png
+  Saved plot: outputs/random_forest/actual_vs_predicted.png
+
+ LEARNING CURVE
+  Saved plot: outputs/random_forest/learning_curve.png
+  Saved plot: outputs/random_forest/rf_model_comparison.png
+
+ RANDOM FOREST COMPLETE
+                   model       MAE      RMSE       R2    MAPE%
+Random Forest (Baseline)  6.877117 75.907447 0.949329 0.733447
+   Random Forest (Tuned) 13.327404 44.700094 0.982429 3.615375
+       Gradient Boosting  8.408683 35.739119 0.988767 2.463722
